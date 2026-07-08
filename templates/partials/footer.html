@@ -1,0 +1,51 @@
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="{% url 'home' %}" class="logo">
+                    <span class="logo-part1">TECH</span><span class="logo-part2">HUB</span>
+                </a>
+                <p class="footer-desc">{{ t.footer_desc }}</p>
+                <div class="footer-contacts">
+                    <div class="footer-contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>
+                        <span>{{ t.phone }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>{{ t.catalog_title }}</h4>
+                <ul>
+                    <li><a href="{% url 'catalog' %}?category=keyboards">Клавиатуры</a></li>
+                    <li><a href="{% url 'catalog' %}?category=mice">Мыши</a></li>
+                    <li><a href="{% url 'catalog' %}?category=mousepads">Коврики</a></li>
+                    <li><a href="{% url 'catalog' %}?category=headsets">Наушники</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>{{ t.company }}</h4>
+                <ul>
+                    <li><a href="{% url 'about' %}">{{ t.about }}</a></li>
+                    <li><a href="{% url 'contacts' %}">{{ t.contacts }}</a></li>
+                    <li><a href="{% url 'privacy' %}">{{ t.privacy }}</a></li>
+                    <li><a href="{% url 'terms' %}">{{ t.terms }}</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>{{ t.help }}</h4>
+                <ul>
+                    <li><a href="{% url 'delivery' %}">{{ t.delivery_payment }}</a></li>
+                    <li><a href="{% url 'returns' %}">{{ t.returns }}</a></li>
+                    <li><a href="{% url 'faq' %}">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TechHub. {{ t.all_rights }}</p>
+            <div class="footer-social">
+                <a href="https://t.me/jasurdv" target="_blank" rel="noopener">Telegram</a>
+                <a href="https://instagram.com/jasur.dvv1" target="_blank" rel="noopener">Instagram</a>
+            </div>
+        </div>
+    </div>
+</footer>

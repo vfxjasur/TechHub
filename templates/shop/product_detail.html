@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    <div class="container">
+        <div class="product-detail">
+            <div class="product-detail-image">
+                <img src="{{ product.display_image }}" alt="{{ product.name }}">
+            </div>
+            <div class="product-detail-info">
+                {% if product.brand %}
+                <span class="product-brand">{{ product.brand.name }}</span>
+                {% endif %}
+                <h1>{{ product.name }}</h1>
+                <div class="product-price-row product-price-large">
+                    <span class="product-price">{{ product.price|floatformat:0 }} сум</span>
+                    {% if product.has_discount_property %}
+                    <span class="product-old-price">{{ product.old_price|floatformat:0 }} сум</span>
+                    {% endif %}
+                </div>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-actions">
+                    <form action="{% url 'cart_add' product.pk %}" method="post" class="add-to-cart-form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-lg">Добавить в корзину</button>
+                    </form>
+                    <form action="{% url 'toggle_favorite' product.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline btn-lg{% if product.pk in favorites %} active{% endif %}">В избранное</button>
+                    </form>
+                </div>
+                <div class="product-meta">
+                    <div class="product-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+                        <span>Официальная гарантия</span>
+                    </div>
+                    <div class="product-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2M15 18H9M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+                        <span>Доставка 1-3 дня</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if related_products %}
+        <div class="related-section">
+            <h2>Похожие товары</h2>
+            <div class="products-grid">
+                {% for product in related_products %}
+                {% include 'partials/product_card.html' %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,181 @@
+<header class="header" id="header">
+    <div class="container header-inner">
+        <a href="{% url 'home' %}" class="logo">
+            <span class="logo-part1">TECH</span><span class="logo-part2">HUB</span>
+        </a>
+
+        <nav class="nav-desktop">
+            <a href="{% url 'home' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">{{ t.home }}</a>
+            <a href="{% url 'catalog' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'catalog' %}active{% endif %}">{{ t.catalog
+                }}</a>
+            <a href="{% url 'about' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">{{ t.about }}</a>
+            <a href="{% url 'contacts' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'contacts' %}active{% endif %}">{{ t.contacts
+                }}</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="icon-btn" id="search-toggle" aria-label="Поиск">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.34-4.34" />
+                </svg>
+            </button>
+            <div class="lang-switcher">
+                <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" name="language" value="ru"
+                        class="icon-btn lang-btn {% if current_language == 'ru' %}active{% endif %}"
+                        aria-label="Русский">
+                        <span>RU</span>
+                    </button>
+                </form>
+                <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" name="language" value="uz"
+                        class="icon-btn lang-btn {% if current_language == 'uz' %}active{% endif %}"
+                        aria-label="O'zbek tili">
+                        <span>UZ</span>
+                    </button>
+                </form>
+            </div>
+            <a href="{% url 'favorites' %}" class="icon-btn" aria-label="Избранное">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
+                </svg>
+            </a>
+            <a href="{% url 'cart' %}" class="icon-btn cart-btn" aria-label="Корзина">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="8" cy="21" r="1" />
+                    <circle cx="19" cy="21" r="1" />
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                </svg>
+                {% if cart_count %}<span class="cart-badge">{{ cart_count }}</span>{% endif %}
+            </a>
+            <a href="{% url 'account' %}" class="icon-btn" aria-label="Аккаунт">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+            </a>
+        </div>
+
+        <div class="header-mobile">
+            <button class="icon-btn" id="search-toggle-mobile" aria-label="Поиск">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.34-4.34" />
+                </svg>
+            </button>
+            <a href="{% url 'cart' %}" class="icon-btn cart-btn" aria-label="Корзина">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="8" cy="21" r="1" />
+                    <circle cx="19" cy="21" r="1" />
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                </svg>
+                {% if cart_count %}<span class="cart-badge">{{ cart_count }}</span>{% endif %}
+            </a>
+            <button class="icon-btn" id="menu-toggle" aria-label="Меню"
+                onclick="document.getElementById('mobile-menu').classList.add('active'); document.body.style.overflow = 'hidden';">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 5h16M4 12h16M4 19h16" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<div class="search-overlay" id="search-overlay">
+    <div class="container">
+        <form action="{% url 'catalog' %}" method="get" class="search-form">
+            <input type="text" name="q" placeholder="{{ t.search_placeholder }}" class="search-input" autofocus>
+            <button type="submit" class="btn btn-primary">{{ t.search_btn }}</button>
+        </form>
+    </div>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-content">
+        <div class="mobile-menu-header">
+            <h3>Меню</h3>
+            <button class="mobile-menu-close" id="mobile-menu-close"
+                onclick="document.getElementById('mobile-menu').classList.remove('active'); document.body.style.overflow = '';">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="mobile-menu-lang">
+            <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" name="language" value="ru"
+                    class="icon-btn lang-btn {% if current_language == 'ru' %}active{% endif %}" aria-label="Русский">
+                    <span>RU</span>
+                </button>
+            </form>
+            <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" name="language" value="uz"
+                    class="icon-btn lang-btn {% if current_language == 'uz' %}active{% endif %}"
+                    aria-label="O'zbek tili">
+                    <span>UZ</span>
+                </button>
+            </form>
+        </div>
+
+        <nav class="mobile-nav">
+            <a href="{% url 'home' %}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                {{ t.home }}
+            </a>
+            <a href="{% url 'catalog' %}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                {{ t.catalog }}
+            </a>
+            <a href="{% url 'favorites' %}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5">
+                    </path>
+                </svg>
+                {{ t.favorites }}
+            </a>
+            <a href="{% url 'account' %}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                {{ t.account }}
+            </a>
+            <a href="{% url 'about' %}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                {{ t.about }}
+            </a>
+            <a href="{% url 'contacts' %}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                    </path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                {{ t.contacts }}
+            </a>
+        </nav>
+    </div>
+</div>

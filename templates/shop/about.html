@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ t.about }}{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    <div class="container">
+        <div class="page-header text-center">
+            <h1>{{ t.about }}</h1>
+            <p class="page-subtitle">TechHub — ваш надёжный партнёр в мире игровой периферии</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <p class="stat-value">5000+</p>
+                <p class="stat-label">Довольных клиентов</p>
+            </div>
+            <div class="stat-card">
+                <p class="stat-value">50+</p>
+                <p class="stat-label">Партнёрских брендов</p>
+            </div>
+            <div class="stat-card">
+                <p class="stat-value">3</p>
+                <p class="stat-label">Года на рынке</p>
+            </div>
+            <div class="stat-card">
+                <p class="stat-value">24/7</p>
+                <p class="stat-label">Поддержка клиентов</p>
+            </div>
+        </div>
+
+        <div class="mission-block">
+            <div class="mission-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <h2>Наша миссия</h2>
+            <p>Мы стремимся предоставить геймерам и профессионалам лучшее оборудование по доступным ценам.</p>
+        </div>
+
+        <h2 class="text-center mb-10">Наши ценности</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>
+                </div>
+                <h3>Качество</h3>
+                <p>Только оригинальная продукция от проверенных брендов</p>
+            </div>
+            <div class="value-card">
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <h3>Сервис</h3>
+                <p>Профессиональная консультация и поддержка</p>
+            </div>
+            <div class="value-card">
+                <div class="feature-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/></svg>
+                </div>
+                <h3>Доверие</h3>
+                <p>Тысячи довольных клиентов по всему Узбекистану</p>
+            </div>
+        </div>
+
+        <div class="history-card">
+            <h2>Наша история</h2>
+            <p>TechHub появился в 2025 году — из любви к качественной периферии и желания сделать её доступной в Узбекистане. Мы начинали как небольшой проект, а сегодня обслуживаем как частных покупателей, так и игровые клубы по всей стране.</p>
+            <p>Каждый продукт в нашем каталоге проходит личную проверку — мы не продаём то, в чём не уверены сами.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

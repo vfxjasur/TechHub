@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ t.catalog }}{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    <div class="container">
+        <div class="page-header">
+            <h1>{{ t.catalog }}</h1>
+            <p class="page-subtitle">Игровая периферия премиум-класса</p>
+        </div>
+
+        <div class="catalog-layout">
+            <aside class="catalog-sidebar">
+                <div class="filter-card">
+                    <h3>{{ t.categories }}</h3>
+                    <ul class="filter-list">
+                        <li><a href="{% url 'catalog' %}" class="{% if not current_category %}active{% endif %}">Все товары</a></li>
+                        {% for cat in categories %}
+                        <li><a href="{% url 'catalog' %}?category={{ cat.slug }}" class="{% if current_category == cat.slug %}active{% endif %}">{{ cat.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="filter-card">
+                    <h3>{{ t.brands }}</h3>
+                    <ul class="filter-list">
+                        <li><a href="{% url 'catalog' %}{% if current_category %}?category={{ current_category }}{% endif %}" class="{% if not current_brand %}active{% endif %}">Все бренды</a></li>
+                        {% for brand in brands %}
+                        <li>
+                            <a href="{% url 'catalog' %}?brand={{ brand.slug }}{% if current_category %}&category={{ current_category }}{% endif %}"
+                               class="{% if current_brand == brand.slug %}active{% endif %}">{{ brand.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </aside>
+
+            <div class="catalog-main">
+                {% if search_query %}
+                <p class="search-results-info">Результаты поиска: «{{ search_query }}» ({{ products|length }})</p>
+                {% endif %}
+                <div class="products-grid">
+                    {% for product in products %}
+                    {% include 'partials/product_card.html' %}
+                    {% empty %}
+                    <div class="empty-state">
+                        <p>Товары не найдены</p>
+                        <a href="{% url 'catalog' %}" class="btn btn-outline">Сбросить фильтры</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

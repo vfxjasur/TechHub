@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}FAQ - Часто задаваемые вопросы{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    <div class="container">
+        <div class="page-header text-center">
+            <h1>Часто задаваемые вопросы</h1>
+            <p class="page-subtitle">Ответы на популярные вопросы о покупке, доставке и гарантии</p>
+        </div>
+
+        <div class="faq-container" style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px;">
+            {% for item in faq_items %}
+            <div class="faq-item" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px;">
+                <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 12px; color: var(--text-primary);">{{ item.question }}</h3>
+                <p style="color: var(--text-secondary); margin: 0; line-height: 1.6;">{{ item.answer }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
