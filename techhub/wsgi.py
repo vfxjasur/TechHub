@@ -17,7 +17,10 @@ if os.environ.get('RENDER'):
     from django.core.management import call_command
 
     call_command('migrate', '--noinput', verbosity=0)
-    call_command('collectstatic', '--noinput', verbosity=0)
+    try:
+        call_command('collectstatic', '--noinput', verbosity=0)
+    except Exception:
+        pass
 
 from django.core.wsgi import get_wsgi_application
 

@@ -148,6 +148,9 @@ STORAGES = {
 
 WHITENOISE_MANIFEST_STRICT = False
 
+if os.environ.get('RENDER'):
+    WHITENOISE_USE_FINDERS = True
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
