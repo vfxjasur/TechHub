@@ -8,13 +8,11 @@
             <a href="{% url 'home' %}"
                 class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">{{ t.home }}</a>
             <a href="{% url 'catalog' %}"
-                class="nav-link {% if request.resolver_match.url_name == 'catalog' %}active{% endif %}">{{ t.catalog
-                }}</a>
+                class="nav-link {% if request.resolver_match.url_name == 'catalog' %}active{% endif %}">{{ t.catalog }}</a>
             <a href="{% url 'about' %}"
                 class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">{{ t.about }}</a>
             <a href="{% url 'contacts' %}"
-                class="nav-link {% if request.resolver_match.url_name == 'contacts' %}active{% endif %}">{{ t.contacts
-                }}</a>
+                class="nav-link {% if request.resolver_match.url_name == 'contacts' %}active{% endif %}">{{ t.contacts }}</a>
         </nav>
 
         <div class="header-actions">
